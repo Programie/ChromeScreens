@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=ChromeScreens
+Exec=/usr/bin/chromescreens-session
+TryExec=/usr/bin/chromescreens-session
+Type=XSession

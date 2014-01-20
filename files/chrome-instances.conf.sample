@@ -1,0 +1,10 @@
+# Configure each browser instance in this file
+# Each line configures a browser instance
+# Empty lines or lines starting with the # character were ignored
+# Use the format '<screen number> <url>'
+#
+# Note: Do not configure more instances than existing screens!
+#
+# Example to configure 2 instances:
+# 0 http://example.com
+# 1 http://another-website.com/subpath/?some=arguments
