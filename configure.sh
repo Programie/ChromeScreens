@@ -41,7 +41,7 @@ gdebi --n /tmp/google-chrome.deb
 rm /tmp/google-chrome.deb
 
 echo "Disabling beep..."
-cp file/disable-beep.conf /etc/modprobe.d/disable-beep.conf
+cp files/disable-beep.conf /etc/modprobe.d/disable-beep.conf
 
 if [ -z "`getent passwd chromescreens`" ]; then
 	echo "Creating user 'chromescreens'..."
