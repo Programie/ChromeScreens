@@ -59,7 +59,7 @@ echo "Copying LightDM configuration..."
 cp files/lightdm.conf /etc/lightdm/lightdm.conf
 
 echo "Copying session script..."
-cp files/sessions.sh /usr/bin/chromescreens-session
+cp files/session.sh /usr/bin/chromescreens-session
 
 echo "Copying session file..."
 cp files/session.desktop /usr/share/xsessions/chromescreens.desktop
