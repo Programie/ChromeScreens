@@ -50,11 +50,9 @@ fi
 
 echo "Copying X server auto configuration script..."
 cp files/x-autoconfig.sh /usr/bin/x-autoconfig
-chmod +x /usr/bin/x-autoconfig
 
 echo "Copying X server auto configuration init script..."
 cp files/x-autoconfig-initd.sh /etc/init.d/x-autoconfig
-chmod +x /etc/init.d/x-autoconfig
 update-rc.d x-autoconfig defaults
 
 echo "Copying LightDM configuration..."
@@ -62,7 +60,6 @@ cp files/lightdm.conf /etc/lightdm/lightdm.conf
 
 echo "Copying session script..."
 cp files/sessions.sh /usr/bin/chromescreens-session
-chmod +x /usr/bin/chromescreens-session
 
 echo "Copying session file..."
 cp files/session.desktop /usr/share/xsessions/chromescreens.desktop
