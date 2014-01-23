@@ -45,7 +45,7 @@ cp files/disable-beep.conf /etc/modprobe.d/disable-beep.conf
 
 if [ -z "`getent passwd chromescreens`" ]; then
 	echo "Creating user 'chromescreens'..."
-	useradd chromescreens
+	useradd -m chromescreens
 fi
 
 echo "Copying X server auto configuration script..."
