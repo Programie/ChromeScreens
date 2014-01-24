@@ -21,9 +21,9 @@ if [ -f $CONFFILE ]; then
 			continue
 		fi
 
-		DAY=$(echo "$LINE" | cut -f 1)
-		ACTION=$(echo "$LINE" | cut -f 2)
-		TIME=$(echo "$LINE" | cut -f 3)
+		DAY=$(echo "$LINE" | cut -d ' ' -f 1)
+		ACTION=$(echo "$LINE" | cut -d ' ' -f 2)
+		TIME=$(echo "$LINE" | cut -d ' ' -f 3)
 
 		if [ -z "$DAY" ]; then
 			echo "Line $LINENUMBER: No day defined!"
