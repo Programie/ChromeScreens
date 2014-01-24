@@ -51,23 +51,28 @@ You have to restart LightDM to see your changes (e.g. *service lightdm restart*)
 
 You can optionally configure your computer to automatically wake it up and suspend it on specific days and at specific times.
 
-**Note:** This feature does not work yet!
-
 Wakeup and suspend times are configured in the file *conf/suspend-wakeup.conf*.
 
 Each non-empty line not starting with a '#' is read by the script.
 
-A line looks like 'Day wakeup-time suspend-time'. The wakeup and suspend times are in format 'hh:mm'.
+Each day must be on a new line in the format 'Day Action Time'.
+
+"Day" is a value between 1 (Monday) and 7 (Sunday).
+"Action" can be "wakeup" (Wake up at the given time) or "suspend" (Suspend at the given time).
+"Time" is a value in format "hh:mm" (e.g. 7:00 for 7am or 20:00 for 8pm).
 
 Example:
 ```
-1 7:00 20:00
-2 7:00 20:00
-3 7:00 20:00
-4 7:00 20:00
-5 7:00 20:00
+1 wakeup 7:00
+1 suspend 20:00
+2 wakeup 7:00
+2 suspend 20:00
+3 wakeup 7:00
+3 suspend 20:00
+4 wakeup 7:00
+4 suspend 20:00
+5 wakeup 7:00
+5 suspend 20:00
 ```
-
-**Each day should only be configured once!**
 
 After you have saved your changes execute *bin/configure-suspend-wakeup.sh*.

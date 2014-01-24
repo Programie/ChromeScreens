@@ -1,15 +1,20 @@
 # Configure the wakeup times in this file.
 #
-# Each day must be on a new line having the following format:
-# Day	Wakeup time	Suspend time
-# Day is a value between 1 (Monday) and 7 (Sunday)
-# Wakeup time and Suspend time is a value in format hh:mm (e.g. 7:00 for 7am or 20:00 for 8pm)
+# Each day must be on a new line having the format 'Day Action Time'.
+# "Day" is a value between 1 (Monday) and 7 (Sunday).
+# "Action" can be "wakeup" (Wake up at the given time) or "suspend" (Suspend at the given time).
+# "Time" is a value in format "hh:mm" (e.g. 7:00 for 7am or 20:00 for 8pm).
 #
-# Execute /usr/bin/chromescreens-configure-suspend-wakeup after every change
+# Execute /usr/bin/chromescreens-configure-suspend-wakeup to apply the changes.
 #
 # Example:
-#1	7:00	20:00
-#2	7:00	20:00
-#3	7:00	20:00
-#4	7:00	20:00
-#5	7:00	20:00
+#1 wakeup 7:00
+#1 suspend 20:00
+#2 wakeup 7:00
+#2 suspend 20:00
+#3 wakeup 7:00
+#3 suspend 20:00
+#4 wakeup 7:00
+#4 suspend 20:00
+#5 wakeup 7:00
+#5 suspend 20:00

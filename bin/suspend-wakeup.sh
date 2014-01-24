@@ -3,12 +3,10 @@
 set -e
 
 SCRIPTPATH=$(dirname $(readlink -f $0))
+NOW=$(date +%s)
+NEXTTIMESTAMP=0
 
-CRONFILE="/etc/cron.d/chromescreens-suspend-wakeup"
 CONFFILE="$SCRIPTPATH/../conf/suspend-wakeup.conf"
-
-echo "Removing old entries..."
-rm -f $CRONFILE
 
 LINENUMBER=0
 if [ -f $CONFFILE ]; then
@@ -60,10 +58,32 @@ if [ -f $CONFFILE ]; then
 			continue
 		fi
 
-		if [ "$ACTION" == "suspend" ]; then
-			echo "$TIME_MINUTE $TIME_HOUR * * $DAY root $SCRIPTPATH/suspend-wakeup.sh" >> $CRONFILE
+		if [ "$ACTION" == "wakeup" ]; then
+			WEEKDAYS[1]="monday"
+			WEEKDAYS[2]="tuesday"
+			WEEKDAYS[3]="wednesday"
+			WEEKDAYS[4]="thursday"
+			WEEKDAYS[5]="friday"
+			WEEKDAYS[6]="saturday"
+			WEEKDAYS[7]="sunday"
+
+			if [ "`date +%u`" == "$DAY" ]; then
+				TIMESTAMP=$(date -d "$TIME_HOUR:$TIME_MINUTE" +%s)
+				if ((TIMESTAMP > NOW)) && ((NEXTTIMESTAMP == 0 || TIMESTAMP < NEXTTIMESTAMP)); then
+					NEXTTIMESTAMP=$TIMESTAMP
+				fi
+			fi
+
+			TIMESTAMP=$(date -d "next ${WEEKDAYS[$DAY]} $TIME_HOUR:$TIME_MINUTE" +%s)
+			if ((TIMESTAMP > NOW)) && ((NEXTTIMESTAMP == 0 || TIMESTAMP < NEXTTIMESTAMP)); then
+				NEXTTIMESTAMP=$TIMESTAMP
+			fi
 		fi
 	done < $CONFFILE
+
+	if ((NEXTTIMESTAMP > 0)); then
+		/usr/sbin/rtcwake -v -m mem -t $NEXTTIMESTAMP
+	fi
 else
 	echo "$CONFFILE not found!"
 fi
