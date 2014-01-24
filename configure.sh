@@ -2,21 +2,29 @@
 
 set -e
 
+if [[ $EUID -ne 0 ]]; then
+	echo "This script must be run as root!"
+	exit 1
+fi
+
+SCRIPTPATH=$(dirname $(readlink -f $0))
+
 echo "This script will configure this computer to display one Google Chrome instance on each of the available screens."
+echo ""
 echo "Press [ENTER] to start the configuration or [CTRL+C] to exit."
 read
 
 echo "Adding contrib package source list..."
-cp files/sources.list.d/debian-contrib.list /etc/apt/sources.list.d/debian-contrib.list
+echo "deb http://http.debian.net/debian/ wheezy contrib" > /etc/apt/sources.list.d/debian-contrib.list
 
 echo "Adding non-free package source list..."
-cp files/sources.list.d/debian-non-free.list /etc/apt/sources.list.d/debian-non-free.list
+echo "deb http://http.debian.net/debian/ wheezy non-free" > /etc/apt/sources.list.d/debian-non-free.list
 
 echo "Updating package lists..."
 aptitude update
 
 echo "Installing/updating required packages..."
-aptitude install -y alsa-utils gdebi-core htop lightdm linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') nvidia-kernel-dkms nvidia-xconfig openbox pulseaudio unclutter vim xserver-xorg
+aptitude install -y alsa-utils gdebi-core htop lightdm linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') nvidia-kernel-dkms nvidia-xconfig openbox pulseaudio unclutter vim xserver-xorg x11vnc
 
 echo "Downloading and installing Google Chrome..."
 ARCH="`arch`"
@@ -40,38 +48,47 @@ wget -O /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-
 gdebi --n /tmp/google-chrome.deb
 rm /tmp/google-chrome.deb
 
-echo "Disabling beep..."
-cp files/disable-beep.conf /etc/modprobe.d/disable-beep.conf
-
 if [ -z "`getent passwd chromescreens`" ]; then
 	echo "Creating user 'chromescreens'..."
 	useradd -m chromescreens
 fi
 
-echo "Copying X server auto configuration script..."
-cp files/x-autoconfig.sh /usr/bin/x-autoconfig
+echo "Cleaning up..."
+rm /etc/init.d/x-autoconfig
+rm /etc/lightdm.conf
+rm /etc/modprobe.d/disable-beep.conf
 
-echo "Copying X server auto configuration init script..."
-cp files/x-autoconfig-initd.sh /etc/init.d/x-autoconfig
+echo "Writing XSession file..."
+cat > /usr/share/xsessions/chromescreens.desktop << EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=ChromeScreens
+Exec=$SCRIPTPATH/bin/session.sh
+TryExec=$SCRIPTPATH/bin/session.sh
+Type=XSession
+EOF
+
+echo "Generating symbolic links..."
+ln -s $SCRIPTPATH/bin/x-autoconfig-initd.sh /etc/init.d/x-autoconfig
+ln -s $SCRIPTPATH/conf/lightdm.conf /etc/lightdm.conf
+ln -s $SCRIPTPATH/conf/disable-beep.conf /etc/modprobe.d/disable-beep.conf
+
+echo "Registering x-autoconfig init.d script..."
 update-rc.d x-autoconfig defaults
 
-echo "Copying LightDM configuration..."
-cp files/lightdm.conf /etc/lightdm/lightdm.conf
-
-echo "Copying session script..."
-cp files/session.sh /usr/bin/chromescreens-session
-
-echo "Copying session file..."
-cp files/session.desktop /usr/share/xsessions/chromescreens.desktop
-
-if [ ! -f /etc/chrome-instances.conf ]; then
-	echo "Copying example configuration..."
-	cp files/chrome-instances.conf.sample /etc/chrome-instances.conf
+if [ ! -f $SCRIPTPATH/conf/suspend-wakeup.conf ]; then
+	echo "Copying example suspend-wakeup configuration..."
+	cp $SCRIPTPATH/conf/suspend-wakeup.conf.sample $SCRIPTPATH/conf/suspend-wakeup.conf
 fi
 
-/usr/bin/editor /etc/chrome-instances.conf
+if [ ! -f $SCRIPTPATH/conf/chrome-instances.conf ]; then
+	echo "Copying example chrome-instances configuration..."
+	cp $SCRIPTPATH/conf/chrome-instances.conf.sample $SCRIPTPATH/conf/chrome-instances.conf
+fi
 
 echo "Done"
+echo ""
+echo "If not already done, please edit $SCRIPTPATH/conf/chrome-instances.conf (required) and $SCRIPTPATH/conf/suspend-wakeup.conf (optional)."
 echo ""
 echo "*** IMPORTANT ***"
 echo "If you already have rebooted this machine after the first execution of this script"
