@@ -46,17 +46,12 @@ esac
 
 wget -O /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_$CHROME_ARCH.deb
 gdebi --n /tmp/google-chrome.deb
-rm /tmp/google-chrome.deb
+rm -f /tmp/google-chrome.deb
 
 if [ -z "`getent passwd chromescreens`" ]; then
 	echo "Creating user 'chromescreens'..."
 	useradd -m chromescreens
 fi
-
-echo "Cleaning up..."
-rm /etc/init.d/x-autoconfig
-rm /etc/lightdm.conf
-rm /etc/modprobe.d/disable-beep.conf
 
 echo "Writing XSession file..."
 cat > /usr/share/xsessions/chromescreens.desktop << EOF
@@ -69,9 +64,9 @@ Type=XSession
 EOF
 
 echo "Generating symbolic links..."
-ln -s $SCRIPTPATH/bin/x-autoconfig-initd.sh /etc/init.d/x-autoconfig
-ln -s $SCRIPTPATH/conf/lightdm.conf /etc/lightdm.conf
-ln -s $SCRIPTPATH/conf/disable-beep.conf /etc/modprobe.d/disable-beep.conf
+ln -fs $SCRIPTPATH/bin/x-autoconfig-initd.sh /etc/init.d/x-autoconfig
+ln -fs $SCRIPTPATH/conf/lightdm.conf /etc/lightdm.conf
+ln -fs $SCRIPTPATH/conf/disable-beep.conf /etc/modprobe.d/disable-beep.conf
 
 echo "Registering x-autoconfig init.d script..."
 update-rc.d x-autoconfig defaults
