@@ -1,10 +1,13 @@
 #!/bin/sh
 
+SCRIPTPATH=$(dirname $(readlink -f $0))
+CONFFILE="$SCRIPTPATH/../conf/chrome-instances.conf"
+
 # Clean up after GDM
 xprop -root -remove _NET_NUMBER_OF_DESKTOPS -remove _NET_DESKTOP_NAMES -remove _NET_CURRENT_DESKTOP 2> /dev/null
 
-if [ ! -f /etc/chrome-instances.conf ]; then
-	echo "/etc/chrome-instances.conf not found!"
+if [ ! -f $CONFFILE ]; then
+	echo "$CONFFILE not found!"
 	exit 1
 fi
 
@@ -35,7 +38,7 @@ while read LINE; do
 	export DISPLAY="$CURRENT_DISPLAY.$SCREEN"
 	/usr/bin/x11vnc -rfbport $VNC_PORT -auth /var/run/lightdm/root/:$CURRENT_DISPLAY -shared -forever -localhost -bg -nopw -viewonly
 	/usr/bin/openbox --startup "/usr/bin/google-chrome --remote-debugging-port=$CHROME_REMOTE_DEBUG_PORT --kiosk --no-first-run --incognito --new-window --user-data-dir=~/.config/chrome-instances/$SCREEN \"$URL\"" &
-done < /etc/chrome-instances.conf
+done < $CONFFILE
 
 # Wait till all window managers are closed
 wait
