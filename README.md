@@ -1,5 +1,7 @@
 # ChromeScreens
 
+**Please note: This script is experimental! Use at your own risk!**
+
 ## What is it?
 
 ChromeScreens can be used to launch a Google Chrome instance on each connected display.
@@ -49,7 +51,7 @@ You have to restart LightDM to see your changes (e.g. *service lightdm restart*)
 
 You can optionally configure your computer to automatically wake it up and suspend it on specific days and at specific times.
 
-**Note:** This feature is experimental!!!
+**Note:** This feature does not work yet!
 
 Wakeup and suspend times are configured in the file *conf/suspend-wakeup.conf*.
 
