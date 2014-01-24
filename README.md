@@ -43,6 +43,8 @@ Example:
 
 **You should not configure more instances than attached screens!**
 
+You have to restart LightDM to see your changes (e.g. *service lightdm restart*).
+
 ## Configure wakeup and suspend
 
 You can optionally configure your computer to automatically wake it up and suspend it on specific days and at specific times.
