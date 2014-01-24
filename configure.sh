@@ -77,7 +77,7 @@ chmod +x /etc/init.d/x-autoconfig
 update-rc.d x-autoconfig defaults
 
 echo "Generating symbolic links..."
-ln -fs $SCRIPTPATH/conf/lightdm.conf /etc/lightdm.conf
+ln -fs $SCRIPTPATH/conf/lightdm.conf /etc/lightdm/lightdm.conf
 ln -fs $SCRIPTPATH/conf/disable-beep.conf /etc/modprobe.d/disable-beep.conf
 
 if [ ! -f $SCRIPTPATH/conf/suspend-wakeup.conf ]; then
