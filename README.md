@@ -65,3 +65,5 @@ Example:
 ```
 
 **Each day should only be configured once!**
+
+After you have saved your changes execute *bin/configure-suspend-wakeup.sh*.
