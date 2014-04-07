@@ -24,7 +24,7 @@ echo "Updating package lists..."
 aptitude update
 
 echo "Installing/updating required packages..."
-aptitude install -y alsa-utils gdebi-core htop lightdm linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') nvidia-kernel-dkms nvidia-xconfig openbox pulseaudio unclutter vim xserver-xorg x11vnc
+aptitude install -y alsa-utils gdebi-core htop lightdm linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') ntp nvidia-kernel-dkms nvidia-xconfig openbox pulseaudio unclutter vim xserver-xorg x11vnc
 
 echo "Downloading and installing Google Chrome..."
 ARCH="`arch`"
