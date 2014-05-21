@@ -82,7 +82,7 @@ if [ -f $CONFFILE ]; then
 	done < $CONFFILE
 
 	if ((NEXTTIMESTAMP > 0)); then
-		/usr/sbin/rtcwake -v -m mem -t $NEXTTIMESTAMP
+		/usr/sbin/rtcwake -v -m mem -t $NEXTTIMESTAMP > /dev/null
 	fi
 else
 	echo "$CONFFILE not found!"
