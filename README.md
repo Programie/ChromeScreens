@@ -16,7 +16,7 @@ One URL of each screen can be configured. So it is perfectly to show websites li
 ## Installation
 
    * Check out this repository on the target system (The system which you want to configure)
-   * Execute the configure.sh script
+   * Execute the (configure.sh)[/configure.sh] script
    * Wait while the script configures ChromeScreens
    * Configure the Chrome instances (See bellow)
    * Use it ;-)
@@ -26,12 +26,12 @@ One URL of each screen can be configured. So it is perfectly to show websites li
 ## Update
 
    * Update the checkout using *git pull*
-   * Execute the configure.sh script again
+   * Execute the (configure.sh)[/configure.sh] script
    * Restart LightDM (service lightdm restart)
 
 ## Configure Chrome instances
 
-Chrome instances are configure in the file *conf/chrome-instances.conf*.
+Chrome instances are configured in the file [conf/chrome-instances.conf](/conf/chrome-instances.conf.sample).
 
 Each non-empty line not starting with a '#' is read by the script.
 
@@ -43,15 +43,15 @@ Example:
 1 http://another-website.com
 ```
 
-**You should not configure more instances than attached screens!**
+**Do not configure more instances than screens attached!**
 
-You have to restart LightDM to see your changes (e.g. *service lightdm restart*).
+You have to restart LightDM to apply your changes (e.g. *service lightdm restart*).
 
 ## Configure wakeup and suspend
 
 You can optionally configure your computer to automatically wake it up and suspend it on specific days and at specific times.
 
-Wakeup and suspend times are configured in the file *conf/suspend-wakeup.conf*.
+Wakeup and suspend times are configured in the file [conf/suspend-wakeup.conf](/conf/suspend-wakeup.conf).
 
 Each non-empty line not starting with a '#' is read by the script.
 
@@ -75,4 +75,4 @@ Example:
 5 suspend 20:00
 ```
 
-After you have saved your changes execute *bin/configure-suspend-wakeup.sh*.
+After you have saved your changes execute [bin/configure-suspend-wakeup.sh](bin/configure-suspend-wakeup.sh).
