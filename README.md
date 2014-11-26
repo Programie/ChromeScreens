@@ -16,7 +16,7 @@ One URL of each screen can be configured. So it is perfectly to show websites li
 ## Installation
 
    * Check out this repository on the target system (The system which you want to configure)
-   * Execute the (configure.sh)[/configure.sh] script
+   * Execute the [configure.sh](/configure.sh) script
    * Wait while the script configures ChromeScreens
    * Configure the Chrome instances (See bellow)
    * Use it ;-)
@@ -26,7 +26,7 @@ One URL of each screen can be configured. So it is perfectly to show websites li
 ## Update
 
    * Update the checkout using *git pull*
-   * Execute the (configure.sh)[/configure.sh] script
+   * Execute the [configure.sh](/configure.sh) script
    * Restart LightDM (service lightdm restart)
 
 ## Configure Chrome instances
