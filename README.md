@@ -78,3 +78,15 @@ Example:
 ```
 
 After you have saved your changes execute [bin/configure-suspend-wakeup.sh](bin/configure-suspend-wakeup.sh).
+
+## Chrome Remote Debugging
+
+Each Chrome instance is started with a locally listening port for Remote Debugging.
+
+You can access it by forwarding port 9200 + <Screen ID> (e.g. Port 9200 for screen 0 and port 9201 for screen 1).
+
+## VNC access
+
+Each screen is viewable via a locally listening VNC server.
+
+You can access it by forwarding port 5900 + <Screen ID> (e.g. Port 5900 for screen 0 and port 5901 for screen 1).
