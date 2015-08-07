@@ -6,7 +6,9 @@
 
 ChromeScreens can be used to launch a Google Chrome instance on each connected display.
 
-One URL of each screen can be configured. So it is perfectly to show websites like monitoring dashboards on big screens.
+One URL for each screen can be configured. So it is a perfect solution to show websites like monitoring dashboards on big screens.
+
+The Chrome instances are launched in full screen (Kiosk mode), so nothing but the website is visible on the screen.
 
 ## Requirements
 
@@ -35,7 +37,7 @@ Chrome instances are configured in the file [conf/chrome-instances.conf](/conf/c
 
 Each non-empty line not starting with a '#' is read by the script.
 
-A line looks like 'Screen-ID URL'. The screen is a numer starting at 0.
+A line looks like 'Screen-ID URL'. The screen is a number starting at 0.
 
 Example:
 ```
