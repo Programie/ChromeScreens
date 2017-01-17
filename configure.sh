@@ -15,10 +15,10 @@ echo "Press [ENTER] to start the configuration or [CTRL+C] to exit."
 read
 
 echo "Adding contrib package source list..."
-echo "deb http://http.debian.net/debian/ wheezy contrib" > /etc/apt/sources.list.d/debian-contrib.list
+echo "deb http://http.debian.net/debian/ jessie contrib" > /etc/apt/sources.list.d/debian-contrib.list
 
 echo "Adding non-free package source list..."
-echo "deb http://http.debian.net/debian/ wheezy non-free" > /etc/apt/sources.list.d/debian-non-free.list
+echo "deb http://http.debian.net/debian/ jessie non-free" > /etc/apt/sources.list.d/debian-non-free.list
 
 echo "Updating package lists..."
 aptitude update

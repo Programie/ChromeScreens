@@ -12,7 +12,7 @@ The Chrome instances are launched in full screen (Kiosk mode), so nothing but th
 
 ## Requirements
 
-   * Debian (x86 or x64)
+   * Debian 8 Jessie (x86 or x64)
    * At least one Nvidia graphics card
 
 ## Installation
