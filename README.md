@@ -8,7 +8,7 @@ ChromeScreens can be used to launch a Google Chrome instance on each connected d
 
 For each screen an URL (or even multiple ones if combined with a tab switcher extension like [Revolver - Tabs](https://chrome.google.com/webstore/detail/revolver-tabs/dlknooajieciikpedpldejhhijacnbda)) can be configured. So it is a perfect solution to show websites like monitoring dashboards on big screens.
 
-The Chrome instances are launched in full screen (Kiosk mode), so nothing but the website is visible on the screen.
+The Chrome instances are launched in full screen (Kiosk mode + Incognito mode), so nothing but the website is visible on the screen.
 
 ## Requirements
 
