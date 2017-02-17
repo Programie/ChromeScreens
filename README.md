@@ -37,12 +37,14 @@ Chrome instances are configured in the file [conf/chrome-instances.conf](/conf/c
 
 Each non-empty line not starting with a '#' is read by the script.
 
-A line looks like 'Screen-ID URL'. The screen is a number starting at 0.
+A line looks like 'Screen-ID Chrome Arguments'. The screen is a number starting at 0.
+
+The chrome arguments typically contains the URL of the website to load. You may specify multiple URLs separated by space to open multiple tabs and install a [Chrome Extension which automatically switches the tabs](https://chrome.google.com/webstore/detail/revolver-tabs/dlknooajieciikpedpldejhhijacnbda).
 
 Example:
 ```
 0 http://example.com
-1 http://another-website.com
+1 http://another-website.com http://some-other-site.com
 ```
 
 **Do not configure more instances than screens attached!**

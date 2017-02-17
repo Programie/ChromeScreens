@@ -31,13 +31,13 @@ while read LINE; do
 	fi
 
 	SCREEN=$(echo "$LINE" | cut -d ' ' -f 1)
-	URL=$(echo "$LINE" | cut -d ' ' -f 2-)
+	CHROME_ARGUMENTS=$(echo "$LINE" | cut -d ' ' -f 2-)
 	VNC_PORT=$((5900 + $SCREEN))
 	CHROME_REMOTE_DEBUG_PORT=$((9200 + $SCREEN))
 
 	export DISPLAY="$CURRENT_DISPLAY.$SCREEN"
 	/usr/bin/x11vnc -rfbport $VNC_PORT -auth /var/run/lightdm/root/:$CURRENT_DISPLAY -shared -forever -localhost -bg -nopw -viewonly
-	/usr/bin/openbox --startup "/usr/bin/google-chrome --remote-debugging-port=$CHROME_REMOTE_DEBUG_PORT --kiosk --no-first-run --incognito --new-window --user-data-dir=~/.config/chrome-instances/$SCREEN \"$URL\"" &
+	/usr/bin/openbox --startup "/usr/bin/google-chrome --remote-debugging-port=$CHROME_REMOTE_DEBUG_PORT --kiosk --no-first-run --incognito --new-window --user-data-dir=~/.config/chrome-instances/$SCREEN $CHROME_ARGUMENTS" &
 done < $CONFFILE
 
 # Wait till all window managers are closed
