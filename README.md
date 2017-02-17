@@ -6,7 +6,7 @@
 
 ChromeScreens can be used to launch a Google Chrome instance on each connected display.
 
-One URL for each screen can be configured. So it is a perfect solution to show websites like monitoring dashboards on big screens.
+For each screen an URL (or even multiple ones if combined with a tab switcher extension like [Revolver - Tabs](https://chrome.google.com/webstore/detail/revolver-tabs/dlknooajieciikpedpldejhhijacnbda)) can be configured. So it is a perfect solution to show websites like monitoring dashboards on big screens.
 
 The Chrome instances are launched in full screen (Kiosk mode), so nothing but the website is visible on the screen.
 
@@ -39,7 +39,7 @@ Each non-empty line not starting with a '#' is read by the script.
 
 A line looks like 'Screen-ID Chrome Arguments'. The screen is a number starting at 0.
 
-The chrome arguments typically contains the URL of the website to load. You may specify multiple URLs separated by space to open multiple tabs and install a [Chrome Extension which automatically switches the tabs](https://chrome.google.com/webstore/detail/revolver-tabs/dlknooajieciikpedpldejhhijacnbda).
+The chrome arguments typically contain the URL of the website to load. You may specify multiple URLs separated by space to open multiple tabs and install a [Chrome Extension which automatically switches the tabs](https://chrome.google.com/webstore/detail/revolver-tabs/dlknooajieciikpedpldejhhijacnbda).
 
 Example:
 ```
